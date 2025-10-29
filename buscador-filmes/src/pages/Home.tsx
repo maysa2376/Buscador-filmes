@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { searchMovies } from '../services/api';
+import { type Movie } from '../types';
+
 
 export default function Home() {
   const [query, setQuery] = useState('');
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState<Movie[]>([]);
   const navigate = useNavigate();
 
-  const handleSearch = async (e) => {
+  const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     const results = await searchMovies(query);
     setMovies(results);
