@@ -16,23 +16,29 @@ export default function Home() {
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>Buscador de Filmes</h1>
-      <form onSubmit={handleSearch}>
+      <form onSubmit={handleSearch} className="search-form">
         <input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Digite o nome do filme..."/>
+          placeholder="Digite o nome do filme..."
+        />
         <button type="submit">Buscar</button>
       </form>
 
-      <div>
+      <div className="movies-grid">
         {movies.map((movie) => (
-          <div key={movie.imdbID} onClick={() => navigate(`/movie/${movie.imdbID}`)}>
+          <div 
+            key={movie.imdbID} 
+            className="movie-card"
+            onClick={() => navigate(`/movie/${movie.imdbID}`)}
+          >
+            <img src={movie.Poster} alt={movie.Title} />
             <h3>{movie.Title}</h3>
-            <img src={movie.Poster} alt={movie.Title} width="100" />
-          </div>))}
+          </div>
+        ))}
       </div>
     </div>);
 }
